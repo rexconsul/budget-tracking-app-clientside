@@ -1,38 +1,63 @@
 // Base Imports
-import React from 'react'
+import React, { useState, useEffect, useContext } from "react";
+
+//App imports
+import UserContext from "UserContext";
 
 //Bootstrap
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Table from 'react-bootstrap/Table'
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Table from "react-bootstrap/Table";
 
-export default function ViewIncome(){
-	return (
-		<Container fluid>
-			<Row className="justify-content-center">
-				<Col sm={12} md={8}>
-					<h3>View Incom Entries</h3>
-					<Table striped bordered hover responsive>
-						<thead>
-							<tr>
-								<th>DateTime</th>
-								<th>Description</th>
-								<th>Category</th>
-								<th>Amount</th>		
-							</tr>						
-						</thead>
-						<tbody>
-							<tr>
-								<td>1998-12-01 09:00</td>
-								<td>Salary for the month of December 1998</td>
-								<td>Salary</td>
-								<td>1000</td>
-							</tr>						
-						</tbody>						
-					</Table>
-				</Col>
-			</Row>
-		</Container>
-	)
+export default function ViewIncome() {
+    const [income, setIncome] = useState([]);
+    const { user } = useContext(UserContext);
+
+    useEffect(() => {
+        fetch(`http://localhost:4000/users/get-income-entries`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${user.accessToken}`,
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                setIncome(data);
+            });
+    }, []);
+
+    return (
+        <Container fluid>
+            <Row className="justify-content-center">
+                <Col sm={12} md={8}>
+                    <h3>View Income Entries</h3>
+                    <Table striped bordered hover responsive>
+                        <thead>
+                            <tr>
+                                <th>DateTime</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {income.map((row) => {
+                                return (
+                                    <tr>
+                                        <td>{row.dateAdded}</td>
+                                        <td>{row.description}</td>
+                                        <td>{row.category}</td>
+                                        <td>{row.amount}</td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </Table>
+                </Col>
+            </Row>
+        </Container>
+    );
 }
