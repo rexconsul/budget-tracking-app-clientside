@@ -8,6 +8,7 @@ import UserContext from "UserContext";
 
 // App components
 import AppNavbar from "components/AppNavbar";
+import ProtectedRoute from "components/ProtectedRoute";
 
 // Page components
 import Home from "pages/Home";
@@ -20,31 +21,47 @@ import Register from "pages/Register";
 import NotFound from "pages/NotFound";
 
 export default function App() {
-  const [user, setUser] = useState({
-    email: localStorage.getItem("accessToken"),
-  });
+    const [user, setUser] = useState({
+        accessToken: localStorage.getItem("accessToken"),
+    });
 
-  const unsetUser = () => {
-    localStorage.clear();
-    setUser({ accessToken: null });
-  };
+    const unsetUser = () => {
+        localStorage.clear();
+        setUser({ accessToken: null });
+    };
 
-  return (
-    <UserContext.Provider value={{ user, setUser, unsetUser }}>
-      <BrowserRouter>
-        <AppNavbar user={user} />
-        <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/add-entry" component={AddEntry} />
-          <Route exact path="/add-category" component={AddCategory} />
-          <Route exact path="/view-expense" component={ViewExpense} />
-          <Route exact path="/view-income" component={ViewIncome} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/404" component={NotFound} />
-          <Redirect to="/404" />
-        </Switch>
-      </BrowserRouter>
-    </UserContext.Provider>
-  );
+    return (
+        <UserContext.Provider value={{ user, setUser, unsetUser }}>
+            <BrowserRouter>
+                <AppNavbar user={user} />
+                <Switch>
+                    <Route exact path="/login" component={Login} />
+                    <ProtectedRoute exact path="/" component={Home} />
+                    <ProtectedRoute
+                        exact
+                        path="/add-entry"
+                        component={AddEntry}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path="/add-category"
+                        component={AddCategory}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path="/view-expense"
+                        component={ViewExpense}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path="/view-income"
+                        component={ViewIncome}
+                    />
+                    <Route exact path="/register" component={Register} />
+                    <ProtectedRoute exact path="/404" component={NotFound} />
+                    <Redirect to="/404" />
+                </Switch>
+            </BrowserRouter>
+        </UserContext.Provider>
+    );
 }

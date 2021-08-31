@@ -79,7 +79,7 @@ export default function Login() {
     }
 
     if (user.accessToken !== null) {
-        return <Redirect to="/login" />;
+        return <Redirect to="/" />;
     }
 
     return (
