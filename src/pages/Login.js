@@ -25,15 +25,14 @@ export default function Login() {
     useEffect(() => {
         let isEmailNotEmpty = email !== "";
         let isPasswordNotEmpty = password !== "";
-        let isMounted = true;
 
-        if (isMounted && isEmailNotEmpty && isPasswordNotEmpty) {
+        if (isEmailNotEmpty && isPasswordNotEmpty) {
             setIsDisabled(false);
         } else {
             setIsDisabled(true);
         }
         return () => {
-            isMounted = false;
+            setIsDisabled(false);
         };
     }, [email, password]);
 

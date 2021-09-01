@@ -47,10 +47,10 @@ export default function ViewIncome() {
                             {income.map((row) => {
                                 return (
                                     <tr>
-                                        <td>{row.dateAdded}</td>
-                                        <td>{row.description}</td>
-                                        <td>{row.category}</td>
-                                        <td>{row.amount}</td>
+                                        <td key={row.id}>{row.dateAdded}</td>
+                                        <td key={row.id}>{row.description}</td>
+                                        <td key={row.id}>{row.category}</td>
+                                        <td key={row.id}>{row.amount}</td>
                                     </tr>
                                 );
                             })}

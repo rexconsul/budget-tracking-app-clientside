@@ -9,7 +9,6 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 
-
 export default function ViewExpense() {
     const [expense, setExpense] = useState([]);
     const { user } = useContext(UserContext);
@@ -47,10 +46,10 @@ export default function ViewExpense() {
                             {expense.map((row) => {
                                 return (
                                     <tr>
-                                        <td>{row.dateAdded}</td>
-                                        <td>{row.description}</td>
-                                        <td>{row.category}</td>
-                                        <td>{row.amount}</td>
+                                        <td key={row.id}>{row.dateAdded}</td>
+                                        <td key={row.id}>{row.description}</td>
+                                        <td key={row.id}>{row.category}</td>
+                                        <td key={row.id}>{row.amount}</td>
                                     </tr>
                                 );
                             })}
