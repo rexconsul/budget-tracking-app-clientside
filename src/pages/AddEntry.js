@@ -23,7 +23,7 @@ export default function AddEntry() {
     const { user } = useContext(UserContext);
 
     useEffect(() => {
-        fetch(`http://localhost:4000/users/get-categories/${type}`, {
+        fetch(`https://mighty-spire-05206.herokuapp.com/users/get-categories/${type}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -40,7 +40,7 @@ export default function AddEntry() {
     function addEntry(e) {
         e.preventDefault();
 
-        fetch(`http://localhost:4000/users/add-entry`, {
+        fetch(`https://mighty-spire-05206.herokuapp.com/users/add-entry`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

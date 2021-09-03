@@ -15,13 +15,16 @@ export default function ViewIncome() {
     const { user } = useContext(UserContext);
 
     useEffect(() => {
-        fetch(`http://localhost:4000/users/get-income-entries`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${user.accessToken}`,
-            },
-        })
+        fetch(
+            `https://mighty-spire-05206.herokuapp.com/users/get-income-entries`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${user.accessToken}`,
+                },
+            }
+        )
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);

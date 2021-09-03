@@ -20,7 +20,7 @@ export default function ViewExpense() {
     }, []);
 
     function getExpense() {
-        fetch(`http://localhost:4000/users/get-expense-entries`, {
+        fetch(`https://mighty-spire-05206.herokuapp.com/users/get-expense-entries`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -35,7 +35,7 @@ export default function ViewExpense() {
     }
 
     function removeEntry(id) {
-        fetch(`http://localhost:4000/users/delete-expense-entry/${id}`, {
+        fetch(`https://mighty-spire-05206.herokuapp.com/users/delete-expense-entry/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

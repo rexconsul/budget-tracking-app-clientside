@@ -45,7 +45,7 @@ export default function Register() {
     function register(e) {
         e.preventDefault();
 
-        fetch("http://localhost:4000/users/register", {
+        fetch("https://mighty-spire-05206.herokuapp.com/users/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

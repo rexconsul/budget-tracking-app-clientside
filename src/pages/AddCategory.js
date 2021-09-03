@@ -20,7 +20,7 @@ export default function AddCategory() {
     function addCategory(e) {
         e.preventDefault();
 
-        fetch("http://localhost:4000/users/add-category", {
+        fetch("https://mighty-spire-05206.herokuapp.com/users/add-category", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -39,7 +39,7 @@ export default function Login() {
     function login(e) {
         e.preventDefault();
 
-        fetch("http://localhost:4000/users/login", {
+        fetch("https://mighty-spire-05206.herokuapp.com/users/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -16,7 +16,7 @@ export default function Home() {
     const { user } = useContext(UserContext);
 
     useEffect(() => {
-        fetch(`http://localhost:4000/users/get-total`, {
+        fetch(`https://mighty-spire-05206.herokuapp.com/users/get-total`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
