@@ -9,7 +9,6 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import { NavItem } from "react-bootstrap";
 
 export default function ViewExpense() {
     const [expense, setExpense] = useState([]);
@@ -20,13 +19,16 @@ export default function ViewExpense() {
     }, []);
 
     function getExpense() {
-        fetch(`https://mighty-spire-05206.herokuapp.com/users/get-expense-entries`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${user.accessToken}`,
-            },
-        })
+        fetch(
+            `https://mighty-spire-05206.herokuapp.com/users/get-expense-entries`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${user.accessToken}`,
+                },
+            }
+        )
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
@@ -35,13 +37,16 @@ export default function ViewExpense() {
     }
 
     function removeEntry(id) {
-        fetch(`https://mighty-spire-05206.herokuapp.com/users/delete-expense-entry/${id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${user.accessToken}`,
-            },
-        })
+        fetch(
+            `https://mighty-spire-05206.herokuapp.com/users/delete-expense-entry/${id}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${user.accessToken}`,
+                },
+            }
+        )
             .then((res) => res.json())
             .then((data) => console.log(data));
         getExpense();
